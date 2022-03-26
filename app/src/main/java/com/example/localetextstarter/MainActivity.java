@@ -100,6 +100,15 @@ public class MainActivity extends AppCompatActivity {
                         NumberFormat mNumberFormat = NumberFormat.getNumberInstance();
 
                         // TODO: Parse string in view v to a number.
+                        try{
+                            mInputQuantity = mNumberFormat.parse(v.getText().toString()).intValue();
+                        } catch (ParseException e) {
+                            v.setError(getText(R.string.enter_number));
+                            e.printStackTrace();
+                        }
+
+                        String formattedQuantity = mNumberFormat.format(mInputQuantity);
+                        v.setText(formattedQuantity);
 
                         // TODO: Convert to string using locale's number format.
 
