@@ -77,7 +77,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         // TODO: Apply the exchange rate and calculate the price.
-
+        String deviceLocale = Locale.getDefault().getCountry();
+        if (deviceLocale == "ID"){
+            mPrice = mPrice * mIdExchangeRate;
+        } else if (deviceLocale == "EG"){
+            mPrice = mPrice * mEgExchangeRate;
+        } else {
+            mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+        }
+        TextView priceTextView = findViewById(R.id.price);
+        String formattedPrice = mCurrencyFormat.format(mPrice);
+        priceTextView.setText(formattedPrice);
 
         // TODO: Show the price string.
 
